@@ -5,8 +5,9 @@ Created on Sat Oct 26 09:38:50 2019
 @author: Gio
 """
 from dateutil.relativedelta import relativedelta
-from useful_functions import isPrime, checkPrimes_substrs, get_permutation
+from useful_functions import isPrime, checkPrimes_substrs, get_permutation, replace_letters
 import datetime as dt
+import pandas as pd 
 import math
 #%% Exercise 16: 
 def exercise_16(x):
@@ -59,6 +60,27 @@ def exercise_19(ini_date, end_date):
 ini_date = dt.datetime(1901, 1, 1)
 end_date = dt.datetime(2000, 12, 31)
 print('The answer is: ', exercise_19(ini_date, end_date))
+
+#%% Exercise 22:
+
+def exercise_22(f_path):
+    strings = open(f_path, "r")
+    text = strings.read()
+    lista = text.split(",")
+    names_org = pd.DataFrame(lista)
+    
+    names_org = names_org.sort_values(by = 
+                names_org.columns.tolist()[0]).reset_index(drop = True)
+    
+    names_org['sum'] = names_org[names_org.columns.tolist()[0]].apply(lambda x: 
+                                                            replace_letters(x))
+    names_org['pos'] = [i for i in range(1, len(names_org) + 1)]
+    names_org['result'] = names_org['sum'] * names_org['pos']
+    
+    return names_org['result'].sum()
+
+f_path = r'C:\Users\Gio\Desktop\Project-Euler\files\p022_names.txt'
+print('The answer is: ', exercise_22(f_path))
 
 #%% Exercise 24: 
 permutations = get_permutation('0123456789')
