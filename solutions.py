@@ -9,6 +9,7 @@ from useful_functions import isPrime, checkPrimes_substrs, get_permutation, repl
 import datetime as dt
 import pandas as pd 
 import math
+
 #%% Exercise 16: 
 def exercise_16(x):
     suma = 0 
@@ -19,7 +20,6 @@ def exercise_16(x):
 print('The answer is: ', exercise_16(2**1000))
 
 #%% Exercise 19: 
-
 def exercise_19(ini_date, end_date):
     
     count_sunday = 0 
@@ -62,7 +62,6 @@ end_date = dt.datetime(2000, 12, 31)
 print('The answer is: ', exercise_19(ini_date, end_date))
 
 #%% Exercise 22:
-
 def exercise_22(f_path):
     strings = open(f_path, "r")
     text = strings.read()
